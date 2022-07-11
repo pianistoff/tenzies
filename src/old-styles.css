@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+}
+
+.outer-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #0b2434;
+    height: 40vw;
+    width: 37.9947vw;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.inner-box {
+    background: #f5f5f5;
+    border-radius: 10px;
+}

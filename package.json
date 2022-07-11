@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d dist",
     "serve": "webpack serve --mode development",
     "build": "webpack --mode production"
   },
@@ -17,8 +18,9 @@
   "bugs": {
     "url": "https://github.com/pianistoff/tenzies/issues"
   },
-  "homepage": "https://github.com/pianistoff/tenzies#readme",
+  "homepage": "https://pianistoff.github.io/tenzies/",
   "dependencies": {
+    "@fontsource/karla": "^4.5.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -31,6 +33,7 @@
     "favicons": "^6.2.2",
     "favicons-webpack-plugin": "^5.0.2",
     "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "mini-css-extract-plugin": "^2.6.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.73.0",
