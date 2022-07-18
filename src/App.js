@@ -1,9 +1,72 @@
 import React from "react";
 import Die from "./components/Die";
+import confetti from "canvas-confetti";
 import { nanoid } from "nanoid";
 
 export default function App() {
     const [dice, setDice] = React.useState(allNewDice());
+    const [tenzies, setTenzies] = React.useState(false);
+
+    React.useEffect(() => {
+        if (
+            dice.every((die) => die.isHeld) &&
+            dice.every((die) => {
+                return die.value === dice[0].value;
+            })
+        ) {
+            setTenzies(true);
+        }
+    }, [dice]);
+    
+    React.useEffect(() => {
+        let interval = null;
+        if (tenzies) {
+            var duration = 15 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = {
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                zIndex: 0,
+            };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            interval = setInterval(function () {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                // since particles fall down, start a bit higher than random
+                confetti(
+                    Object.assign({}, defaults, {
+                        particleCount,
+                        origin: {
+                            x: randomInRange(0.1, 0.3),
+                            y: Math.random() - 0.2,
+                        },
+                    })
+                );
+                confetti(
+                    Object.assign({}, defaults, {
+                        particleCount,
+                        origin: {
+                            x: randomInRange(0.7, 0.9),
+                            y: Math.random() - 0.2,
+                        },
+                    })
+                );
+            }, 250);
+        } else {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [tenzies]);
 
     function generateNewDie() {
         return {
@@ -39,6 +102,11 @@ export default function App() {
         });
     }
 
+    function resetGame() {
+        setTenzies(false);
+        setDice(allNewDice());
+    }
+
     const diceElements = dice.map((die) => (
         <Die
             key={die.id}
@@ -58,8 +126,11 @@ export default function App() {
                         freeze it at its current value between rolls.
                     </p>
                     <div className="dice">{diceElements}</div>
-                    <button onClick={rollDice} className="btn">
-                        Roll
+                    <button
+                        onClick={tenzies ? resetGame : rollDice}
+                        className="btn"
+                    >
+                        {tenzies ? "New Game" : "Roll"}
                     </button>
                 </div>
             </div>
