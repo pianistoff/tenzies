@@ -3,7 +3,7 @@
 }
 
 .outer-box {
-    background: #0b2434;
+    background: #111;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .inner-box {
-    background: #e7e7e7;
+    background: #333;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
     letter-spacing: -0.03em;
-    color: #2b283a;
+    color: white;
 }
 
 .instructions {
@@ -45,7 +45,7 @@
     align-items: center;
     justify-content: center;
     letter-spacing: -0.03em;
-    color: #4a4e74;
+    color: white;
     text-align: center;
 }
 
@@ -59,22 +59,57 @@
     align-content: space-between;
 }
 
-.die-box {
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+.face {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas:
+        "a . c"
+        "e g f"
+        "d . b";
+
+    flex: 0 0 auto;
+    padding: 9.803921569%;
+
+    background-color: #e7e7e7;
+    box-shadow: inset 0 5px white, inset 0 -5px #bbb, inset 5px 0 #d7d7d7,
+        inset -5px 0 #d7d7d7;
+    border-radius: 10%;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.die-num {
-    font-family: "Karla", sans-serif;
-    font-weight: 700;
-    font-size: 20.5889px;
-    line-height: 24px;
-    text-align: center;
-    color: #2b283a;
+.face.held {
+    background-color: #5ae895;
+    box-shadow: inset 0 5px #63ffa3, inset 0 -5px #49ba77, inset 5px 0 #54d689,
+        inset -5px 0 #54d689;
+}
+
+.pip {
+    display: block;
+    align-self: center;
+    justify-self: center;
+    border-radius: 50%;
+    background-color: #333;
+    box-shadow: inset 0 3px #111, inset 0 -3px #555;
+}
+
+.pip:nth-child(2) {
+    grid-area: b;
+}
+.pip:nth-child(3) {
+    grid-area: c;
+}
+.pip:nth-child(4) {
+    grid-area: d;
+}
+.pip:nth-child(5) {
+    grid-area: e;
+}
+.pip:nth-child(6) {
+    grid-area: f;
+}
+/* This selects the last pip of odd-valued dice (1, 3, 5) and positions the pip in the center */
+.pip:nth-child(odd):last-child {
+    grid-area: g;
 }
 
 .btn {
@@ -110,9 +145,13 @@
         width: 84.43271768vh;
         height: 84.43271768vh;
     }
-    .die-box {
+    .face {
         width: 9.45646438vh;
         height: 9.45646438vh;
+    }
+    .pip {
+        width: 1.830283428vh;
+        height: 1.830283428vh;
     }
     .btn {
         width: 24.31662269vh;
@@ -129,9 +168,13 @@
         width: 88.88888889vw;
         height: 88.88888889vw;
     }
-    .die-box {
+    .face {
         width: 9.955555556vw;
         height: 9.955555556vw;
+    }
+    .pip {
+        width: 1.92688172vw;
+        height: 1.92688172vw;
     }
     .btn {
         width: 25.6vw;

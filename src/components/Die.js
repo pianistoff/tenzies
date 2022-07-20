@@ -1,5 +1,4 @@
 import React from "react";
-import "./die.css"
 
 const Pip = () => <span className="pip" />;
 
