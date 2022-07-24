@@ -6,11 +6,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { startGame, endGame } from "./features/gameOnSlice";
 import { rollDice, newDice } from "./features/diceSlice";
 import { resetStopwatch } from "./features/timeSlice";
+import { addRoll, resetRollsCount } from "./features/rollsCountSlice";
 
 export default function App() {
     const dice = useSelector((state) => state.dice.dice);
     const gameOn = useSelector((state) => state.gameOn.gameOn);
-    const time = useSelector(state => state.time.time);
+    const time = useSelector((state) => state.time.time);
+    const rollsCount = useSelector((state) => state.rollsCount.rollsCount);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -82,9 +84,18 @@ export default function App() {
 
     function newGame() {
         dispatch(newDice());
-        if(time !== 0)
-        dispatch(resetStopwatch());
+        if (time !== 0) {
+            dispatch(resetStopwatch());
+        }
+        if (rollsCount !== 0) {
+            dispatch(resetRollsCount());
+        }
         dispatch(startGame());
+    }
+
+    function roll() {
+        dispatch(rollDice());
+        dispatch(addRoll());
     }
 
     const diceElements = dice.map((die) => (
@@ -110,13 +121,12 @@ export default function App() {
                     <div className="bottom">
                         <Stopwatch />
                         <button
-                            onClick={
-                                gameOn ? () => dispatch(rollDice()) : newGame
-                            }
+                            onClick={gameOn ? roll : newGame}
                             className="btn"
                         >
                             {!gameOn ? "New Game" : "Roll"}
                         </button>
+                        <p className="rolls-count">{rollsCount}</p>
                     </div>
                 </div>
             </div>

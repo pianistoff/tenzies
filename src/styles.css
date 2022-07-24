@@ -119,7 +119,8 @@
     width: 100%;
 }
 
-.stopwatch {
+.stopwatch,
+.rolls-count {
     color: white;
     font-family: "Karla", sans-serif;
     font-weight: 700;

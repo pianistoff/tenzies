@@ -10,12 +10,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import gameOnReducer from "./features/gameOnSlice";
 import diceReducer from "./features/diceSlice";
 import timeReducer from "./features/timeSlice";
+import rollsCountReducer from "./features/rollsCountSlice";
 
 const store = configureStore({
     reducer: {
         gameOn: gameOnReducer,
         dice: diceReducer,
-        time: timeReducer
+        time: timeReducer,
+        rollsCount: rollsCountReducer
     }
 })  
 
