@@ -1,11 +1,14 @@
 import React from "react";
 import Die from "./components/Die";
 import confetti from "canvas-confetti";
-import { nanoid } from "nanoid";
+import { useSelector, useDispatch } from "react-redux";
+import { startGame, endGame } from "./features/gameOnSlice";
+import { rollDice, newDice } from "./features/diceSlice";
 
 export default function App() {
-    const [dice, setDice] = React.useState(allNewDice());
-    const [tenzies, setTenzies] = React.useState(false);
+    const dice = useSelector((state) => state.dice.dice);
+    const gameOn = useSelector((state) => state.gameOn.gameOn);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
         if (
@@ -14,13 +17,19 @@ export default function App() {
                 return die.value === dice[0].value;
             })
         ) {
-            setTenzies(true);
+            dispatch(endGame());
         }
     }, [dice]);
-    
+
     React.useEffect(() => {
         let interval = null;
-        if (tenzies) {
+        if (
+            !gameOn &&
+            dice.every((die) => die.isHeld) &&
+            dice.every((die) => {
+                return die.value === dice[0].value;
+            })
+        ) {
             var duration = 15 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = {
@@ -66,56 +75,23 @@ export default function App() {
             clearInterval(interval);
         }
         return () => clearInterval(interval);
-    }, [tenzies]);
+    }, [gameOn]);
 
-    function generateNewDie() {
-        return {
-            value: Math.ceil(Math.random() * 6),
-            isHeld: false,
-            id: nanoid(),
-        };
-    }
-
-    function allNewDice() {
-        const newDice = [];
-        for (let i = 0; i < 10; i++) {
-            newDice.push(generateNewDie());
-        }
-        return newDice;
-    }
-
-    function rollDice() {
-        setDice((oldDice) => {
-            return oldDice.map((oldDie) => {
-                return oldDie.isHeld ? oldDie : generateNewDie();
-            });
-        });
-    }
-
-    function holdDice(id) {
-        setDice((oldDice) => {
-            return oldDice.map((oldDie) => {
-                return oldDie.id === id
-                    ? { ...oldDie, isHeld: !oldDie.isHeld }
-                    : oldDie;
-            });
-        });
-    }
-
-    function resetGame() {
-        setTenzies(false);
-        setDice(allNewDice());
+    function newGame() {
+        dispatch(newDice());
+        dispatch(startGame());
     }
 
     const diceElements = dice.map((die) => (
         <Die
-            key={die.id}
-            value={die.value}
-            isHeld={die.isHeld}
-            id={die.id}
-            hold={() => holdDice(die.id)}
+        key={die.id}
+        value={die.value}
+        isHeld={die.isHeld}
+        id={die.id}
+        // hold={() => dispatch(holdDice(die.id))}
         />
     ));
+
     return (
         <main className="main">
             <div className="outer-box">
@@ -127,10 +103,10 @@ export default function App() {
                     </p>
                     <div className="dice">{diceElements}</div>
                     <button
-                        onClick={tenzies ? resetGame : rollDice}
+                        onClick={gameOn ? () => dispatch(rollDice()) : newGame}
                         className="btn"
                     >
-                        {tenzies ? "New Game" : "Roll"}
+                        {!gameOn ? "New Game" : "Roll"}
                     </button>
                 </div>
             </div>

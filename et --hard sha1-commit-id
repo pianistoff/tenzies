@@ -1,0 +1,13 @@
+[33m31af1f4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Test
+[33m83e1f21[m Test
+[33m51b806f[m Test
+[33m7e2d854[m Password checking
+[33m3d67901[m Change color scheme a bit and optimize css
+[33mba1aed0[m Correct inner box colour
+[33m6d236d3[m Replace numbers with pips on dice and correct their styles
+[33m9220e1c[m Add victory behaviour
+[33m7a359b2[m Add features and stylize
+[33mdeb1309[m Mark up and stylize the button
+[33mfe37624[m Mark up and stylize the dice
+[33m2ffb149[m Mark up and stylize the box
+[33m16d4d4a[m[33m ([m[1;32mdist[m[33m)[m Basic react setup and dummy content
