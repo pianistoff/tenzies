@@ -119,14 +119,14 @@ export default function App() {
                     </p>
                     <div className="dice">{diceElements}</div>
                     <div className="bottom">
-                        <Stopwatch />
+                        <p className="rolls-count">{rollsCount}</p>
                         <button
                             onClick={gameOn ? roll : newGame}
                             className="btn"
                         >
                             {!gameOn ? "New Game" : "Roll"}
                         </button>
-                        <p className="rolls-count">{rollsCount}</p>
+                        <Stopwatch />
                     </div>
                 </div>
             </div>
