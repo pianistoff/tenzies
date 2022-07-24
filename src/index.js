@@ -9,11 +9,13 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import gameOnReducer from "./features/gameOnSlice";
 import diceReducer from "./features/diceSlice";
+import timeReducer from "./features/timeSlice";
 
 const store = configureStore({
     reducer: {
         gameOn: gameOnReducer,
-        dice: diceReducer
+        dice: diceReducer,
+        time: timeReducer
     }
 })  
 

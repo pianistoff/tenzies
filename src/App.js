@@ -1,13 +1,16 @@
 import React from "react";
 import Die from "./components/Die";
+import Stopwatch from "./components/Stopwatch";
 import confetti from "canvas-confetti";
 import { useSelector, useDispatch } from "react-redux";
 import { startGame, endGame } from "./features/gameOnSlice";
 import { rollDice, newDice } from "./features/diceSlice";
+import { resetStopwatch } from "./features/timeSlice";
 
 export default function App() {
     const dice = useSelector((state) => state.dice.dice);
     const gameOn = useSelector((state) => state.gameOn.gameOn);
+    const time = useSelector(state => state.time.time);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -79,16 +82,18 @@ export default function App() {
 
     function newGame() {
         dispatch(newDice());
+        if(time !== 0)
+        dispatch(resetStopwatch());
         dispatch(startGame());
     }
 
     const diceElements = dice.map((die) => (
         <Die
-        key={die.id}
-        value={die.value}
-        isHeld={die.isHeld}
-        id={die.id}
-        // hold={() => dispatch(holdDice(die.id))}
+            key={die.id}
+            value={die.value}
+            isHeld={die.isHeld}
+            id={die.id}
+            // hold={() => dispatch(holdDice(die.id))}
         />
     ));
 
@@ -102,12 +107,17 @@ export default function App() {
                         freeze it at its current value between rolls.
                     </p>
                     <div className="dice">{diceElements}</div>
-                    <button
-                        onClick={gameOn ? () => dispatch(rollDice()) : newGame}
-                        className="btn"
-                    >
-                        {!gameOn ? "New Game" : "Roll"}
-                    </button>
+                    <div className="bottom">
+                        <Stopwatch />
+                        <button
+                            onClick={
+                                gameOn ? () => dispatch(rollDice()) : newGame
+                            }
+                            className="btn"
+                        >
+                            {!gameOn ? "New Game" : "Roll"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>

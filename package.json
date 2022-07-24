@@ -24,10 +24,10 @@
     "@fontsource/karla": "^4.5.8",
     "@reduxjs/toolkit": "^1.8.3",
     "canvas-confetti": "^1.5.1",
-    "nanoid": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.2"
+    "react-redux": "^8.0.2",
+    "react-stopwatch": "^2.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
