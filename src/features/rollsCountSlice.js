@@ -14,4 +14,6 @@ export const rollsCountSlice = createSlice({
 
 export const { addRoll, resetRollsCount } = rollsCountSlice.actions;
 
+export const selectRollsCount = state => state.rollsCount.rollsCount;
+
 export default rollsCountSlice.reducer;

@@ -14,4 +14,6 @@ export const timeSlice = createSlice({
 
 export const { addTenMs, resetStopwatch } = timeSlice.actions;
 
+export const selectTime = state => state.time.time;
+
 export default timeSlice.reducer;

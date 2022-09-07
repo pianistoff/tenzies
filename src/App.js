@@ -1,18 +1,25 @@
 import React from "react";
 import Die from "./components/Die";
 import Stopwatch from "./components/Stopwatch";
+import Table from "./components/Table";
 import confetti from "canvas-confetti";
 import { useSelector, useDispatch } from "react-redux";
 import { startGame, endGame } from "./features/gameOnSlice";
 import { rollDice, newDice } from "./features/diceSlice";
 import { resetStopwatch } from "./features/timeSlice";
 import { addRoll, resetRollsCount } from "./features/rollsCountSlice";
+import { selectDice } from "./features/diceSlice";
+import { selectGameOn } from "./features/gameOnSlice";
+import { selectTime } from "./features/timeSlice";
+import { selectRollsCount } from "./features/rollsCountSlice";
+import { selectTableOpen } from "./features/tableOpenSlice";
 
 export default function App() {
-    const dice = useSelector((state) => state.dice.dice);
-    const gameOn = useSelector((state) => state.gameOn.gameOn);
-    const time = useSelector((state) => state.time.time);
-    const rollsCount = useSelector((state) => state.rollsCount.rollsCount);
+    const dice = useSelector(selectDice);
+    const gameOn = useSelector(selectGameOn);
+    const time = useSelector(selectTime);
+    const rollsCount = useSelector(selectRollsCount);
+    const tableOpen = useSelector(selectTableOpen);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -111,6 +118,7 @@ export default function App() {
     return (
         <main className="main">
             <div className="outer-box">
+                {tableOpen && <Table />}
                 <div className="inner-box">
                     <h1 className="title">Tenzies</h1>
                     <p className="instructions">

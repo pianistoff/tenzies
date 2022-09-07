@@ -44,4 +44,6 @@ export const diceSlice = createSlice({
 
 export const { rollDice, holdDice, newDice } = diceSlice.actions;
 
+export const selectDice = state => state.dice.dice;
+
 export default diceSlice.reducer;

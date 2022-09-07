@@ -1,15 +1,15 @@
-const path = require('path');
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FaviconWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'index.bundle.js'
+        path: path.join(__dirname, "/dist"),
+        filename: "index.bundle.js",
     },
     devServer: {
         port: 3010,
-        liveReload: true
+        liveReload: true,
     },
     module: {
         rules: [
@@ -17,17 +17,21 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
-                }
+                    loader: "babel-loader",
+                },
             },
             {
                 test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader'
-                ]
-            }
-        ]
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
+            },
+            {
+                test: /\.(s(a|c)ss)$/,
+                use: ['style-loader','css-loader', 'sass-loader']
+             }
+        ],
     },
-    plugins: [new MiniCssExtractPlugin(), new FaviconWebpackPlugin("./src/favicon.ico")]
-}
+    plugins: [
+        new MiniCssExtractPlugin(),
+        new FaviconWebpackPlugin("./src/favicon.ico"),
+    ],
+};

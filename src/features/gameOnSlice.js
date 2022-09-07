@@ -19,4 +19,6 @@ export const gameOnSlice = createSlice({
 
 export const { startGame, endGame } = gameOnSlice.actions;
 
+export const selectGameOn = state => state.gameOn.gameOn;
+
 export default gameOnSlice.reducer;
