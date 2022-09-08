@@ -1,5 +1,5 @@
 import React from "react";
-import Die from "./components/Die.jsx";
+import Die from "./components/DieIndex.jsx";
 import Stopwatch from "./components/Stopwatch.jsx";
 import Table from "./components/Table.jsx";
 import { useSelector } from "react-redux";
