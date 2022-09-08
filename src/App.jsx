@@ -10,7 +10,7 @@ import { selectGameOn } from "./store/gameOnSlice";
 import { selectRollsCount } from "./store/rollsCountSlice";
 import { selectTableOpen } from "./store/tableOpenSlice";
 import useNewGame from './hooks/useNewGame';
-import useHandleEndGame from './hooks/useHandleGameEnd.js';
+import useEndGame from './hooks/useEndGame.js';
 import useFireworks from "./hooks/useFireworks.js";
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
     const tableOpen = useSelector(selectTableOpen);
     const dispatch = useDispatch();
     const newGame = useNewGame();
-    useHandleEndGame();
+    useEndGame();
     useFireworks();
 
     function roll() {
@@ -34,7 +34,6 @@ export default function App() {
             value={die.value}
             isHeld={die.isHeld}
             id={die.id}
-            // hold={() => dispatch(holdDice(die.id))}
         />
     ));
 
