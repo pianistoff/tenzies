@@ -1,7 +1,7 @@
 import React from "react";
-import Die from "./components/Die";
-import Stopwatch from "./components/Stopwatch";
-import Table from "./components/Table";
+import Die from "./components/Die.jsx";
+import Stopwatch from "./components/Stopwatch.jsx";
+import Table from "./components/Table.jsx";
 import confetti from "canvas-confetti";
 import { useSelector, useDispatch } from "react-redux";
 import { startGame, endGame } from "./features/gameOnSlice";
