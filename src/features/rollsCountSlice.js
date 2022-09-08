@@ -1,19 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-    rollsCount: 0
-}
+import { createSlice } from '@reduxjs/toolkit';
 
 export const rollsCountSlice = createSlice({
-    name: "rollsCount",
-    initialState,
+    name: 'rollsCount',
+    initialState: 0,
     reducers: {
-        addRoll: state => {state.rollsCount++},
-        resetRollsCount: state => {state.rollsCount = 0}
-}});
+        addRoll: (state) => {
+            return ++state;
+        },
+        resetRollsCount: () => {
+            return 0;
+        },
+    },
+});
 
 export const { addRoll, resetRollsCount } = rollsCountSlice.actions;
 
-export const selectRollsCount = state => state.rollsCount.rollsCount;
+export const selectRollsCount = (state) => state.rollsCount;
 
 export default rollsCountSlice.reducer;

@@ -1,24 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    gameOn: false
-}
-
 export const gameOnSlice = createSlice({
     name: "gameOn",
-    initialState,
+    initialState: false,
     reducers: {
-        startGame: state => {
-            state.gameOn = true;
+        startGame: () => {
+            return true;
         },
-        endGame: state => {
-            state.gameOn = false;
+        endGame: () => {
+            return false;
         }
     }
 })
 
 export const { startGame, endGame } = gameOnSlice.actions;
 
-export const selectGameOn = state => state.gameOn.gameOn;
+export const selectGameOn = state => state.gameOn;
 
 export default gameOnSlice.reducer;

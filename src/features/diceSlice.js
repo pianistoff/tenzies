@@ -16,34 +16,30 @@ function allNewDice() {
     return newDice;
 }
 
-const initialState = {
-    dice: allNewDice(),
-};
-
 export const diceSlice = createSlice({
     name: "dice",
-    initialState,
+    initialState: allNewDice(),
     reducers: {
         rollDice(state) {
-            state.dice = state.dice.map((oldDie) => {
+            return state.map((oldDie) => {
                 return oldDie.isHeld ? oldDie : generateNewDie();
             });
         },
         holdDice(state, action) {
-            state.dice = state.dice.map((oldDie) => {
+            return state.map((oldDie) => {
                 return oldDie.id === action.payload
                     ? { ...oldDie, isHeld: !oldDie.isHeld }
                     : oldDie;
             });
         },
-        newDice(state) {
-            state.dice = allNewDice();
+        newDice() {
+            return allNewDice();
         },
     },
 });
 
 export const { rollDice, holdDice, newDice } = diceSlice.actions;
 
-export const selectDice = state => state.dice.dice;
+export const selectDice = state => state.dice;
 
 export default diceSlice.reducer;
