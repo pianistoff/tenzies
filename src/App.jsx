@@ -5,17 +5,16 @@ import Table from "./components/Table.jsx";
 import { useSelector } from "react-redux";
 import { selectDice } from "./store/diceSlice";
 import { selectGameOn } from "./store/gameOnSlice";
-import { selectRollsCount } from "./store/rollsCountSlice";
 import { selectTableOpen } from "./store/tableOpenSlice";
 import useNewGame from './hooks/useNewGame';
 import useEndGame from './hooks/useEndGame.js';
 import useFireworks from "./hooks/useFireworks.js";
 import useRollDice from './hooks/useRollDice';
+import RollsCounter from "./components/RollsCounter.jsx";
 
 export default function App() {
     const dice = useSelector(selectDice);
     const gameOn = useSelector(selectGameOn);
-    const rollsCount = useSelector(selectRollsCount);
     const tableOpen = useSelector(selectTableOpen);
     const newGame = useNewGame();
     const roll = useRollDice();
@@ -43,7 +42,7 @@ export default function App() {
                     </p>
                     <div className="dice">{diceElements}</div>
                     <div className="bottom">
-                        <p className="rolls-count">{rollsCount}</p>
+                        <RollsCounter />
                         <button
                             onClick={gameOn ? roll : newGame}
                             className="btn"

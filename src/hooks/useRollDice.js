@@ -1,4 +1,6 @@
 import { useDispatch } from "react-redux";
+import { rollDice } from "../store/diceSlice";
+import { addRoll } from "../store/rollsCountSlice";
 
 const useRollDice = () => {
     const dispatch = useDispatch();
