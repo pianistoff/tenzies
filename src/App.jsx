@@ -4,15 +4,15 @@ import Stopwatch from "./components/Stopwatch.jsx";
 import Table from "./components/Table.jsx";
 import confetti from "canvas-confetti";
 import { useSelector, useDispatch } from "react-redux";
-import { startGame, endGame } from "./features/gameOnSlice";
-import { rollDice, newDice } from "./features/diceSlice";
-import { resetStopwatch } from "./features/timeSlice";
-import { addRoll, resetRollsCount } from "./features/rollsCountSlice";
-import { selectDice } from "./features/diceSlice";
-import { selectGameOn } from "./features/gameOnSlice";
-import { selectTime } from "./features/timeSlice";
-import { selectRollsCount } from "./features/rollsCountSlice";
-import { selectTableOpen } from "./features/tableOpenSlice";
+import { startGame, endGame } from "./store/gameOnSlice";
+import { rollDice, newDice } from "./store/diceSlice";
+import { resetStopwatch } from "./store/timeSlice";
+import { addRoll, resetRollsCount } from "./store/rollsCountSlice";
+import { selectDice } from "./store/diceSlice";
+import { selectGameOn } from "./store/gameOnSlice";
+import { selectTime } from "./store/timeSlice";
+import { selectRollsCount } from "./store/rollsCountSlice";
+import { selectTableOpen } from "./store/tableOpenSlice";
 
 export default function App() {
     const dice = useSelector(selectDice);

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTenMs } from "../features/timeSlice";
-import { selectGameOn } from "../features/gameOnSlice";
-import { selectTime } from "../features/timeSlice";
+import { addTenMs } from "../store/timeSlice";
+import { selectGameOn } from "../store/gameOnSlice";
+import { selectTime } from "../store/timeSlice";
 
 const Stopwatch = () => {
     const gameOn = useSelector(selectGameOn);

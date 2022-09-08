@@ -1,5 +1,5 @@
 import React from "react";
-import { holdDice } from "../features/diceSlice";
+import { holdDice } from "../store/diceSlice";
 import { useDispatch } from "react-redux";
 
 const Pip = () => <span className="pip" />;
