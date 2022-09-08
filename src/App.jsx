@@ -2,9 +2,7 @@ import React from "react";
 import Die from "./components/Die.jsx";
 import Stopwatch from "./components/Stopwatch.jsx";
 import Table from "./components/Table.jsx";
-import confetti from "canvas-confetti";
 import { useSelector, useDispatch } from "react-redux";
-import { endGame } from "./store/gameOnSlice";
 import { rollDice } from "./store/diceSlice";
 import { addRoll } from "./store/rollsCountSlice";
 import { selectDice } from "./store/diceSlice";
@@ -12,6 +10,8 @@ import { selectGameOn } from "./store/gameOnSlice";
 import { selectRollsCount } from "./store/rollsCountSlice";
 import { selectTableOpen } from "./store/tableOpenSlice";
 import useNewGame from './hooks/useNewGame';
+import useHandleEndGame from './hooks/useHandleGameEnd.js';
+import useFireworks from "./hooks/useFireworks.js";
 
 export default function App() {
     const dice = useSelector(selectDice);
@@ -20,73 +20,8 @@ export default function App() {
     const tableOpen = useSelector(selectTableOpen);
     const dispatch = useDispatch();
     const newGame = useNewGame();
-
-    React.useEffect(() => {
-        if (
-            dice.every((die) => die.isHeld) &&
-            dice.every((die) => {
-                return die.value === dice[0].value;
-            })
-        ) {
-            dispatch(endGame());
-        }
-    }, [dice]);
-
-    React.useEffect(() => {
-        let interval = null;
-        if (
-            !gameOn &&
-            dice.every((die) => die.isHeld) &&
-            dice.every((die) => {
-                return die.value === dice[0].value;
-            })
-        ) {
-            var duration = 15 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = {
-                startVelocity: 30,
-                spread: 360,
-                ticks: 60,
-                zIndex: 0,
-            };
-
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
-
-            interval = setInterval(function () {
-                var timeLeft = animationEnd - Date.now();
-
-                if (timeLeft <= 0) {
-                    return clearInterval(interval);
-                }
-
-                var particleCount = 50 * (timeLeft / duration);
-                // since particles fall down, start a bit higher than random
-                confetti(
-                    Object.assign({}, defaults, {
-                        particleCount,
-                        origin: {
-                            x: randomInRange(0.1, 0.3),
-                            y: Math.random() - 0.2,
-                        },
-                    })
-                );
-                confetti(
-                    Object.assign({}, defaults, {
-                        particleCount,
-                        origin: {
-                            x: randomInRange(0.7, 0.9),
-                            y: Math.random() - 0.2,
-                        },
-                    })
-                );
-            }, 250);
-        } else {
-            clearInterval(interval);
-        }
-        return () => clearInterval(interval);
-    }, [gameOn]);
+    useHandleEndGame();
+    useFireworks();
 
     function roll() {
         dispatch(rollDice());
