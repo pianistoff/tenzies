@@ -4,23 +4,22 @@ import Stopwatch from "./components/Stopwatch.jsx";
 import Table from "./components/Table.jsx";
 import confetti from "canvas-confetti";
 import { useSelector, useDispatch } from "react-redux";
-import { startGame, endGame } from "./store/gameOnSlice";
-import { rollDice, newDice } from "./store/diceSlice";
-import { resetStopwatch } from "./store/timeSlice";
-import { addRoll, resetRollsCount } from "./store/rollsCountSlice";
+import { endGame } from "./store/gameOnSlice";
+import { rollDice } from "./store/diceSlice";
+import { addRoll } from "./store/rollsCountSlice";
 import { selectDice } from "./store/diceSlice";
 import { selectGameOn } from "./store/gameOnSlice";
-import { selectTime } from "./store/timeSlice";
 import { selectRollsCount } from "./store/rollsCountSlice";
 import { selectTableOpen } from "./store/tableOpenSlice";
+import useNewGame from './hooks/useNewGame';
 
 export default function App() {
     const dice = useSelector(selectDice);
     const gameOn = useSelector(selectGameOn);
-    const time = useSelector(selectTime);
     const rollsCount = useSelector(selectRollsCount);
     const tableOpen = useSelector(selectTableOpen);
     const dispatch = useDispatch();
+    const newGame = useNewGame();
 
     React.useEffect(() => {
         if (
@@ -88,17 +87,6 @@ export default function App() {
         }
         return () => clearInterval(interval);
     }, [gameOn]);
-
-    function newGame() {
-        dispatch(newDice());
-        if (time !== 0) {
-            dispatch(resetStopwatch());
-        }
-        if (rollsCount !== 0) {
-            dispatch(resetRollsCount());
-        }
-        dispatch(startGame());
-    }
 
     function roll() {
         dispatch(rollDice());
