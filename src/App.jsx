@@ -2,9 +2,7 @@ import React from "react";
 import Die from "./components/Die.jsx";
 import Stopwatch from "./components/Stopwatch.jsx";
 import Table from "./components/Table.jsx";
-import { useSelector, useDispatch } from "react-redux";
-import { rollDice } from "./store/diceSlice";
-import { addRoll } from "./store/rollsCountSlice";
+import { useSelector } from "react-redux";
 import { selectDice } from "./store/diceSlice";
 import { selectGameOn } from "./store/gameOnSlice";
 import { selectRollsCount } from "./store/rollsCountSlice";
@@ -12,21 +10,17 @@ import { selectTableOpen } from "./store/tableOpenSlice";
 import useNewGame from './hooks/useNewGame';
 import useEndGame from './hooks/useEndGame.js';
 import useFireworks from "./hooks/useFireworks.js";
+import useRollDice from './hooks/useRollDice';
 
 export default function App() {
     const dice = useSelector(selectDice);
     const gameOn = useSelector(selectGameOn);
     const rollsCount = useSelector(selectRollsCount);
     const tableOpen = useSelector(selectTableOpen);
-    const dispatch = useDispatch();
     const newGame = useNewGame();
+    const roll = useRollDice();
     useEndGame();
     useFireworks();
-
-    function roll() {
-        dispatch(rollDice());
-        dispatch(addRoll());
-    }
 
     const diceElements = dice.map((die) => (
         <Die
