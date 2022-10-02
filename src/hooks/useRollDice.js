@@ -1,16 +1,16 @@
-import { useDispatch } from "react-redux";
-import { rollDice } from "../store/diceSlice";
-import { addRoll } from "../store/rollsCountSlice";
+import { useDispatch } from 'react-redux';
+import { rollDice } from '../store/diceSlice';
+import { addRoll } from '../store/rollsCountSlice';
 
 const useRollDice = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    function roll() {
-        dispatch(rollDice());
-        dispatch(addRoll());
-    }
+  function roll() {
+    dispatch(rollDice());
+    dispatch(addRoll());
+  }
 
-    return roll;
-}
+  return roll;
+};
 
-export default useRollDice
+export default useRollDice;

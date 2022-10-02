@@ -1,16 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const tableOpenSlice = createSlice({
-    name: 'tableOpen',
-    initialState: false,
-    reducers: {
-        openTable: () => {
-            return true;
-        },
-        closeTable: () => {
-            return false;
-        },
-    },
+  name: 'tableOpen',
+  initialState: false,
+  reducers: {
+    openTable: () => true,
+    closeTable: () => false,
+  },
 });
 
 export const { openTable, closeTable } = tableOpenSlice.actions;

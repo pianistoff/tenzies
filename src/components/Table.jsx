@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Table() {
-  return (
-    <div className="table">
-        
-    </div>
-  )
+  return <div className="table" />;
 }
 
-export default Table
+export default Table;
