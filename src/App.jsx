@@ -11,6 +11,7 @@ import useEndGame from './hooks/useEndGame';
 import useFireworks from './hooks/useFireworks';
 import useRollDice from './hooks/useRollDice';
 import RollsCounter from './components/RollsCounter';
+import HamburgerMenu from './components/HamburgerMenu';
 
 export default function App() {
   const dice = useSelector(selectDice);
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <main className="main">
+      <HamburgerMenu />
       <div className="outer-box">
         {tableOpen && <Table />}
         <div className="inner-box">
