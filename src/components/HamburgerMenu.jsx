@@ -1,16 +1,16 @@
 import React from 'react';
 
 function HamburgerMenu() {
-  const [isHamburgerActive, setIsHamburgerActive] = React.useState(false);
+  const [hamburgerActive, setHamburgerActive] = React.useState(false);
 
   const handleHamburger = () => {
-    setIsHamburgerActive((prevIsHamburgerActive) => !prevIsHamburgerActive);
+    setHamburgerActive((prevHamburgerActive) => !prevHamburgerActive);
   };
 
   return (
     <button
       className={`hamburger hamburger--collapse ${
-        isHamburgerActive && 'is-active'
+        hamburgerActive && 'is-active'
       }`}
       type="button"
       onClick={handleHamburger}
