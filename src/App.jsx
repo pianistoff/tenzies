@@ -28,8 +28,8 @@ export default function App() {
 
   return (
     <main className="main">
-      <HamburgerMenu />
       <div className="outer-box">
+        <HamburgerMenu />
         {tableOpen && <Table />}
         <div className="inner-box">
           <h1 className="title">Tenzies</h1>
