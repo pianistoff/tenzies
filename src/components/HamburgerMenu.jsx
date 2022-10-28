@@ -22,7 +22,7 @@ function HamburgerMenu() {
 
   return (
     <button
-      className={`hamburger hamburger--collapse ${
+      className={`hamburger hamburger--elastic ${
         hamburgerActive && 'is-active'
       }`}
       type="button"
