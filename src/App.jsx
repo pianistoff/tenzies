@@ -5,7 +5,6 @@ import Stopwatch from './components/Stopwatch';
 import Table from './components/Table';
 import { selectDice } from './store/diceSlice';
 import { selectGameOn } from './store/gameOnSlice';
-import { selectTableOpen } from './store/tableOpenSlice';
 import useNewGame from './hooks/useNewGame';
 import useEndGame from './hooks/useEndGame';
 import useFireworks from './hooks/useFireworks';
@@ -16,7 +15,6 @@ import HamburgerMenu from './components/HamburgerMenu';
 export default function App() {
   const dice = useSelector(selectDice);
   const gameOn = useSelector(selectGameOn);
-  const tableOpen = useSelector(selectTableOpen);
   const newGame = useNewGame();
   const roll = useRollDice();
   useEndGame();
@@ -30,7 +28,7 @@ export default function App() {
     <main className="main">
       <div className="outer-box">
         <HamburgerMenu />
-        {tableOpen && <Table />}
+        <Table />
         <div className="inner-box">
           <h1 className="title">Tenzies</h1>
           <p className="instructions">
