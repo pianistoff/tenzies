@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Die from './components/DieIndex';
 import Stopwatch from './components/Stopwatch';
-import Table from './components/Table';
+import ScoreTable from './components/ScoreTable';
 import { selectDice } from './store/diceSlice';
 import { selectGameOn } from './store/gameOnSlice';
 import useNewGame from './hooks/useNewGame';
@@ -28,7 +28,7 @@ export default function App() {
     <main className="main">
       <div className="outer-box">
         <HamburgerMenu />
-        <Table />
+        <ScoreTable />
         <div className="inner-box">
           <h1 className="title">Tenzies</h1>
           <p className="instructions">
