@@ -9,6 +9,7 @@ import useNewGame from './hooks/useNewGame';
 import useEndGame from './hooks/useEndGame';
 import useFireworks from './hooks/useFireworks';
 import useRollDice from './hooks/useRollDice';
+import useSaveGameData from './hooks/useSaveGameData';
 import RollsCounter from './components/RollsCounter';
 import HamburgerMenu from './components/HamburgerMenu';
 
@@ -18,6 +19,7 @@ export default function App() {
   const newGame = useNewGame();
   const roll = useRollDice();
   useEndGame();
+  useSaveGameData();
   useFireworks();
 
   const diceElements = dice.map((die) => (

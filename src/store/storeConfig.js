@@ -4,6 +4,7 @@ import diceReducer from './diceSlice';
 import timeReducer from './timeSlice';
 import rollsCountReducer from './rollsCountSlice';
 import tableOpenReducer from './tableOpenSlice';
+import tableDataReducer from './tableDataSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     time: timeReducer,
     rollsCount: rollsCountReducer,
     tableOpen: tableOpenReducer,
+    tableData: tableDataReducer,
   },
 });
 
