@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
-import { saveNonRecordGameData } from '../store/tableDataSlice';
+import { saveGameData } from '../store/tableDataSlice';
 import { selectGameOn } from '../store/gameOnSlice';
 import { selectDice } from '../store/diceSlice';
 import { selectTime } from '../store/timeSlice';
@@ -21,8 +20,7 @@ const useSaveGameData = () => {
       dice.every((die) => die.value === dice[0].value)
     ) {
       dispatch(
-        saveNonRecordGameData({
-          key: nanoid(),
+        saveGameData({
           date: new Date().getTime(),
           rollsCount,
           time,

@@ -28,7 +28,10 @@ function ScoreTable() {
 
   return (
     <div className={`table ${tableOpen && 'open'}`}>
-      <Table columns={columns} dataSource={tableData} />
+      <Table
+        columns={columns}
+        dataSource={tableData.record.concat(tableData.temporary)}
+      />
     </div>
   );
 }
