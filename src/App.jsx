@@ -1,30 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import Die from './components/DieIndex';
+import Text from './components/Text';
+import Dice from './components/Dice';
 import Stopwatch from './components/Stopwatch';
+import Button from './components/Button';
 import ScoreTable from './components/ScoreTable';
-import { selectDice } from './store/diceSlice';
-import { selectGameOn } from './store/gameOnSlice';
-import useNewGame from './hooks/useNewGame';
 import useEndGame from './hooks/useEndGame';
 import useFireworks from './hooks/useFireworks';
-import useRollDice from './hooks/useRollDice';
 import useSaveGameData from './hooks/useSaveGameData';
 import RollsCounter from './components/RollsCounter';
 import HamburgerMenu from './components/HamburgerMenu';
 
 export default function App() {
-  const dice = useSelector(selectDice);
-  const gameOn = useSelector(selectGameOn);
-  const newGame = useNewGame();
-  const roll = useRollDice();
   useEndGame();
   useSaveGameData();
   useFireworks();
-
-  const diceElements = dice.map((die) => (
-    <Die key={die.id} value={die.value} isHeld={die.isHeld} id={die.id} />
-  ));
 
   return (
     <main className="main">
@@ -32,21 +21,11 @@ export default function App() {
         <HamburgerMenu />
         <ScoreTable />
         <div className="inner-box">
-          <h1 className="title">Tenzies</h1>
-          <p className="instructions">
-            Roll until all dice are the same. Click each die to freeze it at its
-            current value between rolls.
-          </p>
-          <div className="dice">{diceElements}</div>
+          <Text />
+          <Dice />
           <div className="bottom">
             <RollsCounter />
-            <button
-              type="button"
-              onClick={gameOn ? roll : newGame}
-              className="btn"
-            >
-              {!gameOn ? 'New Game' : 'Roll'}
-            </button>
+            <Button />
             <Stopwatch />
           </div>
         </div>
