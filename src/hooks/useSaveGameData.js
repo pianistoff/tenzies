@@ -5,6 +5,7 @@ import { selectGameOn } from '../store/gameOnSlice';
 import { selectDice } from '../store/diceSlice';
 import { selectTime } from '../store/timeSlice';
 import { selectRollsCount } from '../store/rollsCountSlice';
+import formatTime from '../formatTime';
 
 const useSaveGameData = () => {
   const dice = useSelector(selectDice);
@@ -21,9 +22,9 @@ const useSaveGameData = () => {
     ) {
       dispatch(
         saveGameData({
-          date: new Date().getTime(),
+          date: new Date().toString('yyyy/MM/dd HH:mm:ss'),
           rollsCount,
-          time,
+          time: formatTime(time, 'mm:ss.msms'),
         })
       );
     }

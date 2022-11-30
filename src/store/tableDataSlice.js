@@ -1,4 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
+import formatTime from '../formatTime';
 
 export const tableDataSlice = createSlice({
   name: 'tableData',
@@ -14,7 +15,10 @@ export const tableDataSlice = createSlice({
       } else {
         for (let i = 0; i < state.record.length; i += 1) {
           const otherIndex = 1 - i;
-          if (state.record[i].time > action.payload.time) {
+          if (
+            formatTime(state.record[i].time, 'ms') >
+            formatTime(action.payload.time, 'ms')
+          ) {
             newState = {
               temporary: [...state.temporary, state.record[i]],
               record: [
